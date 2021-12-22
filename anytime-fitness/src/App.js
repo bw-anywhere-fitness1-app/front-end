@@ -1,13 +1,6 @@
-
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import Home from "./components/Home";
-import ClassCreation from "./components/ClassCreation";
-import Navbar from './components/Navbar/Navbar'
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import styled, { createGlobalStyle, css } from "styled-components";
-
-
+import HomePage from "./components/homepage/HomePage";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -20,18 +13,8 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-		<main>
-			<GlobalStyle />
-			<Router>
-				<Switch>
-					<Route path="/" exact component={Home} />
-					<Route path="/sign-up" exact component={SignUp} />
-					<Route path="/login" exact component={Login} />
-					<Route path="/create-class" exact component={ClassCreation} />
-					<Route path="/welcome" exact component={Navbar} />
-				</Switch>
-			</Router>
-		</main>
+		<HomePage />
+
 	);
 
 }

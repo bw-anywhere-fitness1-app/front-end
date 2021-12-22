@@ -17,6 +17,8 @@ export default function Header () {
             <HeroContent>
                 <StyledH1>Any place. Anytime.</StyledH1>
                 <StyledH2>Fitness classes at your convenience</StyledH2>
+                <p>Whether your looking to get fit for the new year, Or helping others achieve their dream body,</p>
+                <p>Anytime Fitness has all the support you need, in one place.</p>
                 <Button>Join Now</Button>
             </HeroContent>
         </Background>
@@ -35,6 +37,7 @@ padding: 2%;
     color: white;
     font-weight: bold;
     text-decoration: none;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
 }
 `
 
@@ -53,7 +56,7 @@ margin-bottom: 1%;
 `
 const StyledH2 = styled.h2`
 color: white;
-font-size: 1.4rem;
+font-size: 1.8rem;
 font-weight: 300;
 padding: 0;
 margin: 0;
@@ -62,12 +65,18 @@ const Background = styled.div`
 background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'); 
 background-size: cover;
 height: 80vh;
+margin: 0;
 `
 
 const HeroContent = styled.div`
 text-align: left;
 width: 60%;
 margin: 8% auto;
+p {
+    margin: 1% auto;
+    color: white;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+}
 `
 
 const Button = styled.button`
