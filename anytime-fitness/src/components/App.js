@@ -1,10 +1,10 @@
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import Home from "./components/Home";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Home from "./Home";
 import ClassCreation from "./components/ClassCreation";
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './Navbar/Navbar'
 import styled, { createGlobalStyle, css } from "styled-components";
 
 
