@@ -1,6 +1,7 @@
 import React from 'react';
 import ClassCard from "./ClassCard";
 
+
 export default function ClassesList(props) {
     const { classes } = props;
     return (
