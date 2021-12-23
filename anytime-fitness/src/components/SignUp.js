@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import signUpSchema from '../verification/signUpSchema';
 import useForm from "../hooks/useForm";
 import styled, { createGlobalStyle, css } from "styled-components";
-
+import * as yup from 'yup';
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -97,21 +97,75 @@ const defaultValues = {
     username: "",
     password: "",
     confirmPassword: "",
-    email: "",
+    roleType: "2",
 }
+const initialFormErrors = {
+	username: "A username is required",
+	password: "A password is required",
+	confirmPw: "You must confirm your password",
+	roleType: ""
+  };
 
 
-export default function SignUp() {
+function SignUp() {
 
-    const [formValues, error, reset, change] = useForm(signUpSchema, defaultValues);
+    const [formValues, error, change] = useForm(signUpSchema, defaultValues);
 
 
     const submit = evt => {
         evt.preventDefault();
-        // api post request goes here
-        reset()
+        schema.isValid(formData).then((valid) => {
+			if (valid) {
+			  axios.post('https://bw-anywhere-fitness1-app.herokuapp.com/api', {username:formData.username, password:formData.password, role_type:formData.role_type})
+				.then(() => {
+				  axios.post('https://bw-anywhere-fitness1-app.herokuapp.com/api', {username:formData.username, password:formData.password})
+					.then(resp => {
+					  localStorage.setItem('token', resp.data.token);
+					  localStorage.setItem('user_id', resp.data.user_id);
+					  localStorage.setItem('role_type', resp.data.role_type);
+					  localStorage.setItem('username', formData.username);
+					  refreshRole();
+					  push('/homepage');
+				  })
+				})
+				.catch(err => {
+				  setCurrentError(err.response.data.message);
+				  setDisplayError(true);
+				})
+			} else {
+			  setDisplayError(true);
+			}
+		  });
+		}
+		const onChange = (event) => {
+			const { name, value } = event.target;
+			setFormValues({ ...formValues, [name]: value });
+			if(name==='confirmPassword'){
+			  if(formValues.password===value){
+				setFormErrors({ ...formErrors, [name]: ''});
+				setCurrentError(formErrors.username ? formErrors.username : formErrors.role_type ? formErrors.role_type : formErrors.password);
+			  } else {
+				setFormErrors({ ...formErrors, [name]:value ? 'The passwords must be the same' : initialFormErrors[name]});
+				setCurrentError(value ? 'The passwords must be the same' : initialFormErrors[name]);
+			  }
+			} else {
+			  if(name==='password'){
+				if(formData.confirmPassword===value){
+				  setFormErrors({ ...formErrors, confirmPw: ''});
+				  setCurrentError(formErrors.username ? formErrors.username : formErrors.role_id ? formErrors.role_id : formErrors.password);
+				} else {
+				  setFormErrors({ ...formErrors, confirmPw:value ? 'The passwords must be the same' : initialFormErrors['confirmPw']});
+				  setCurrentError(value ? 'The passwords must be the same' : initialFormErrors['confirmPw']);
+				}
+			  }
+			  yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {setFormErrors({ ...formErrors, [name]: "" }); setCurrentError(name!=='username'&&formErrors.username ? formErrors.username : name!=='role_type'&&formErrors.role_id ? formErrors.role_id : name!=='password'&&formErrors.password ? formErrors.password : formErrors.confirmPw);})
+      .catch((err) => {setFormErrors({ ...formErrors, [name]: err.errors[0] }); setCurrentError(err.errors[0]);});
     }
-
+    console.log(formValues);
+  };
 
 
     return (
@@ -127,7 +181,7 @@ export default function SignUp() {
 							type="text"
 							name="username"
 							id="username"
-							onChange={change}
+							onChange={onChange}
 							value={formValues.username}
 						/>
 					</label>
@@ -138,7 +192,7 @@ export default function SignUp() {
 							type="password"
 							name="password"
 							id="password"
-							onChange={change}
+							onChange={onChange}
 							value={formValues.password}
 						/>
 					</label>
@@ -149,18 +203,18 @@ export default function SignUp() {
 							type="password"
 							name="confirmPassword"
 							id="confirmPassword"
-							onChange={change}
+							onChange={onChange}
 							value={formValues.confirmPassword}
 						/>
 					</label>
-					<label htmlFor="email">
-						Email:
+					<label htmlFor="roleType">
+						:
 						<input
-							data-cy="email"
-							type="email"
-							name="email"
-							id="email"
-							onChange={change}
+							data-cy="roleType"
+							type="text"
+							name="roleType"
+							id="roleType"
+							onChange={onChange}
 							value={formValues.email}
 						/>
 					</label>
@@ -174,3 +228,5 @@ export default function SignUp() {
 			</>
 		);
 }
+
+export default SignUp;
