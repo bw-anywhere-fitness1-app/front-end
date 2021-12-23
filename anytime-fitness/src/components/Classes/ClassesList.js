@@ -1,11 +1,31 @@
-import React from 'react';
-import ClassCard from "./ClassCard";
+import React, { useEffect, useState } from "react";
+import ClassComponent from "./ClassComponent";
 
-export default function CLassesList(props) {
-    const { classes } = props;
+const ClassesList = () => {
+    // const [classes, setClasses] = useState([]);
+    const [classes, setClasses] = useState([]);
+
+    useEffect(() => {
+
+        setClasses(initialClassesList)
+    }, []);
+
+    console.log(classes);
     return (
-        <ul>
-            {classes?.map((c, index) => <ClassCard data={c} key={index}/>)}
-        </ul>
-    )
-}
+        <div className="cardHolder">
+            <h1>Classes</h1>
+            <div className="cards">
+                {classes.map((item) => {
+                    return (
+                        <ClassComponent
+                            classNew={item}
+                            key={item.id}
+                        />
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+export default ClassesList;
