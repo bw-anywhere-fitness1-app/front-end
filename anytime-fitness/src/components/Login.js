@@ -1,8 +1,9 @@
 import React from 'react';
 import loginSchema from '../verification/loginSchema';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useForm from '../hooks/useForm';
 import styled, { createGlobalStyle, css } from "styled-components";
+import axios from 'axios';
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -122,21 +123,24 @@ const StyledLink = styled(Link)`
 `;
 
 
-
-
-
+//State
 const defaultValues = {
     username: "",
     password: "",
+	role_type: "",
 }
+
 
 export default function Login() {
 
+	const { push } = useHistory();
     const [formValues, error, reset, change] = useForm(loginSchema, defaultValues)
 
+
+
     const submit = evt => {
-        evt.preventDefault();
-        // api post request goes here
+        evt.preventDefault(), 
+        axios.post('', formValues), 
         reset()
     }
 
