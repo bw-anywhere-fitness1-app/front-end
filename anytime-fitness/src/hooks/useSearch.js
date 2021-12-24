@@ -27,4 +27,7 @@ const useSearch = (initialData, searchQuery) => {
     return filteredData; 
 }
 
+<<<<<<< HEAD
 export default useSearch;
+=======
+>>>>>>> main
