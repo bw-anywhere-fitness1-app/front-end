@@ -134,15 +134,28 @@ const defaultValues = {
 export default function Login() {
 
 	const { push } = useHistory();
+	const [creds, setCreds] = useState(defaultValues)
     const [formValues, error, reset, change] = useForm(loginSchema, defaultValues)
 
+	const change = e => {
+		setCreds({
+			...creds,
+			[e.target.name]: e.target.value,
+		})
+	}
 
 
     const submit = evt => {
         evt.preventDefault(), 
-        axios.post('', formValues), 
-        reset()
+        axios.post('', creds)
+		.then(resp => {
+			localStorage.setItem("token", resp.payload)
+		})
+		push('/welcome');
+		reset();
     }
+
+	//   I am not sure what else may be needed. I have left blank things I am unsure of. Like the API URL and I am was not sure if we are checking for user status like, user or instructor, at login or if I am missing anything. -- Melissa
 
     return (
 			<div>
