@@ -3,7 +3,7 @@ import axios from "axios";
 import useForm from '../hooks/useForm';
 import useSearch from '../hooks/useSearch';
 import searchSchema from "../verification/searchSchema"
-import ClassesList from "./Classes/ClassesList";
+import ClassesList from "./ClassesList";
 import styled, { createGlobalStyle, css } from 'styled-components'
 import Navbar from './Navbar/Navbar'
 import { Link } from "react-router-dom";
