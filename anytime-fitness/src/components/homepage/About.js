@@ -1,41 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-=======
 
->>>>>>> main
-=======
-
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951
 export default function About () {
     return (
         <AboutContainer>
             <LeftDiv>
                 <h2>Anytime.</h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                 <ul>
                     <li>Find Classes that fit your schedule</li><br />
                     <li>From Yoga to Crossfit, We've got certified trainers and instructors to help you reach your fitness goals</li>
                 </ul> 
-=======
-                <p>Lorem ipsum</p>
-                {/* Insert Marketing Points */}
-                {/* Call to Action */}
->>>>>>> main
-=======
-                <p>Lorem ipsum</p>
-                {/* Insert Marketing Points */}
-                {/* Call to Action */}
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951
             </LeftDiv>
             <RightDiv>
                 {/* Image */}
             </RightDiv>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             <LeftDiv2>
                 {/* Image */}
             </LeftDiv2>
@@ -48,22 +29,6 @@ export default function About () {
                 </ul>    {/* Insert Marketing Points */}
             </RightDiv2>
             <NavLink to="sign-up">Join Now</NavLink>
-=======
-=======
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951
-            <LeftDiv>
-                {/* Image */}
-            </LeftDiv>
-            <RightDiv>
-                <h2>Anywhere</h2>
-                <p>Lorem ipsum;</p>
-                {/* Insert Marketing Points */}
-                {/* Call to Action */}
-            </RightDiv>
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951
 
         </AboutContainer>
         
@@ -171,27 +136,3 @@ const NavLink = styled(Link)`
     left: 40%;
     text-decoration: none;
     `
-=======
-=======
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-`
-const LeftDiv = styled.div`
-width: 45%;
-height: 50vh;
-margin: 2%;
-border: 1px solid black;
-`
-
-const RightDiv = styled.div`
-width: 45%;
-height: 50vh;
-margin: 2%;
-border: 1px solid black;
-`
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> bc643a833e0aec89ec31be34b1378fbdbb7cc951

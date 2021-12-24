@@ -1,6 +1,6 @@
 import React from 'react';
 import useForm from "../../hooks/useForm";
-import classSchema from "../verification/classSchema"
+import classSchema from "../../verification/classSchema"
 import styled, { createGlobalStyle, css } from "styled-components";
 import { Link } from "react-router-dom";
 

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import signUpSchema from '../verification/signUpSchema';
-import useForm from "../hooks/useForm";
+import signUpSchema from '../../verification/signUpSchema';
+import useForm from "../../hooks/useForm";
 import styled, { createGlobalStyle, css } from "styled-components";
 import * as yup from "yup";
+import axios from 'axios';
+
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -116,7 +118,8 @@ const initialFormErrors = {
 
 function SignUp() {
 
-    const [formValues, error, onChange] = useForm(signUpSchema, defaultValues);
+    const [formValues, error, setFormValues] = useForm(signUpSchema, defaultValues);
+	const [formErrors, setFormErrors, currentError, setCurrentError, displayError, setDisplayError ] = useState([])
 
 
     const onSubmit = evt => {
@@ -130,9 +133,7 @@ function SignUp() {
 					  localStorage.setItem('token', resp.data.token);
 					  localStorage.setItem('user_id', resp.data.user_id);
 					  localStorage.setItem('role_type', resp.data.role_type);
-					  localStorage.setItem('username', formData.username);
-					  refreshRole();
-					  push('/homepage');
+					  localStorage.setItem('username', formValues.username);
 				  })
 				})
 				.catch(err => {
@@ -157,7 +158,7 @@ function SignUp() {
 			  }
 			} else {
 			  if(name==='password'){
-				if(formData.confirmPassword===value){
+				if(formValues.confirmPassword===value){
 				  setFormErrors({ ...formErrors, confirmPassword: ''});
 				  setCurrentError(formErrors.username ? formErrors.username : formErrors.role_id ? formErrors.role_id : formErrors.password);
 				} else {

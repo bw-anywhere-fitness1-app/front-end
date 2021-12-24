@@ -16,8 +16,10 @@ export default function HomePage () {
 }
 
 const PageContainer = styled.div`
-width: 95%;
+width: 100%;
 margin: 0 auto;
+text-shadow: 0 5px 5px rgba(0, 0, 0, 0.9);
+font-weight: bold;
 `
 
 const Page = styled.div`
