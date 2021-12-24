@@ -1,7 +1,7 @@
 import React from 'react';
-import loginSchema from '../../verification/loginSchema';
+import loginSchema from '../verification/loginSchema';
 import { Link } from "react-router-dom";
-import useForm from '../../hooks/useForm';
+import useForm from '../hooks/useForm';
 import styled, { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
